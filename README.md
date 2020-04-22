@@ -1,2 +1,2 @@
 # ProblemSolving
-Solving a problem by using optimal Algorithm
+Solving each problem by using optimal Algorithm
