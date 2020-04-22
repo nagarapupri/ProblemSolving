@@ -1,1 +1,29 @@
-print("Hello"
+#sample test case-[1,2,4,7,10,11,7,12,6,7,16,18,19]
+#Time complexity=o(n),space complexity=o(1)
+def subarraySort(array):
+    MinOutOfOrder=float("inf")
+	MaxOutOfOrder=float("-inf")
+ # finding all unsorted numbers and then finding smallest and largest unsorted number to retrieve starting and ending indices.
+	for i in range(len(array)):
+		num=array[i]
+		if IsOutOfOrder(i,num,array):#if our number is out of order, then we update minoutoforder and maxoutoforder.
+			MinOutOfOrder=min(MinOutOfOrder,num)
+			MaxOutOfOrder=max(MaxOutOfOrder,num)
+	if MaxOutOfOrder==float("-inf"):
+		return [-1, -1]
+	#retrieving indices for miminum and maximun out of order elements.
+	SubarrayLeftIDX=0
+	while MinOutOfOrder>=array[SubarrayLeftIDX]:
+			SubarrayLeftIDX+=1
+	SubarrayRightIDX=len(array)-1
+	while MaxOutOfOrder<=array[SubarrayRightIDX]:
+			SubarrayRightIDX-=1
+	return [SubarrayLeftIDX,SubarrayRightIDX]
+#finding out if there is any element out of order.
+def IsOutOfOrder(i,num,array):#returns boolean
+	if i==0:
+		return num>array[i+1]
+	if i==len(array)-1:
+		return num<array[i-1]
+	return num<array[i-1] or num>array[i+1]
+
